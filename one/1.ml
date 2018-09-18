@@ -55,5 +55,5 @@ let hazeBeforeBees = `a` < `b` ;;
 let littleCharThinksALotOfHimself = `a` < "bonjour" ;;
 let charUpgraded = "a" < "bonjour" ;;
 let meTryToGetAnotherTypeError = `a` ^ "près" ;;
-let meCongratulateYouItWorked = `a` ^ "près" ;;
+let meCongratulateYouItWorked = "a" ^ "près" ;;
 let twelveHasAWeakStart = "12" > "2" ;;
