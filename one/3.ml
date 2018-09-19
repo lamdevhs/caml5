@@ -14,3 +14,28 @@ let x = 1 in
 let x = 0 in
   x = 2*x ;; print_string "/// env: unchanged; still local x ///" ;;
 
+
+print_string "\n\n ** Def locales emboitees " ;;
+let x = 5 in
+  let prod = x*x in
+    prod + prod * prod ;; print_string "/// env unchanged; evals to 650 ///" ;;
+
+let resultat = let x = 5 in
+  let prod = x*x in
+    prod + prod * prod ;; print_string "/// env = resultat,650/previous_env ///" ;;
+
+let val = let x = 3 and y = 4 in
+  let x = x + y and y = x - y in
+    x*x + y*y ;;
+    print_string "/// env = val,58/resultat,650/previous_env ///" ;;
+
+print_string "\n\n ** Expressions conditionnelles " ;;
+if 1 = 1
+  then "salut" else "au revoir" ;;
+let x = 3 in
+  if x < 0 then x else x * x ;;
+if 5 > 0 then 1 else "erreur" ;; (* type error: string <> int *)
+let x = 3 and y = 3 in
+  let y = y*x in
+    if y mod 2 = 0 then "pair" else "impair" ;; (* impair *)
+

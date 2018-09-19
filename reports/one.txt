@@ -1,0 +1,3 @@
+TP1 and start of TP2
+
+Une bonne methode pour construire une fonction sans la certitude de comment la construire a priori consiste a construire l'expression du corps de la fonction morceaux par morceaux, dans un environement interactif (dans un interpreteur) permettant de valider au fur et a mesure chaque avancee vers la resolution du probleme. il est en effet bien plus simple de corriger une erreur dans une petite expression dans un interpreteur que a partir d'une erreur de compilation sur une grosse definition de fonction ecrite en dehors de l'interpreteur.
