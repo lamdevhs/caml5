@@ -1,28 +1,49 @@
 let heures = int_of_float ;;
+
+(* premiere tentative a ete infructueuse *)
 let minutes_marchePas = fun x ->
   let h = float_of_int (heures x) in
-  let m = 100. *. (x -. h) in
-  (m, int_of_float m) ;;
+  let d = x -. h in (* decimales uniquement *)
+  let m = 100. *. d in
+  int_of_float m
+;;
   (*
-  pour 12.42, retourne 41; pour 7.01, retourne 0
+  minutes_marchePas 12.42 = 41 ;; //au lieu de 42
+  minutes_marchePas 7.01 = 0 ;;  //au lieu de 1
+  clairement c'est un probleme de perte de precision du aux
+  flottants :(
   *)
 
+(* cette version fonctionne: transforme en entier 12.42 --> 1242
+ * puis utilise le modulo 100 pour recuperer 42 *)
 let minutes = fun x ->
   let i = int_of_float (100. *. x) in
-  i mod 100 ;;
+  i mod 100
+;;
 
-let t = 12.42 in t, heures t, minutes t, minutes_marchePas t ;;
 let test = [1.; 0.; 24.39; 12.42; 7.01; 4.40] ;;
-map heures test ;;
-let test = [1.; 0.; 24.39; 12.42; 7.01; 4.40] ;;
-map minutes test ;;
+(* `map` applique une fonction a tous les elements d'une liste:
+ * ca rend les tests plus pratiques: *)
+let test_heures = map heures test ;;
+let test_minutes = map minutes test ;;
+
+(* test pour voir que minutes_marchePas ne marche effectivement
+ * pas, et le comparer a `minutes` *)
+let test_echec =
+  let t = 12.42 in
+  (t, heures t, minutes t, minutes_marchePas t)
+;;
 
 let quelle_heure_est_il =
+  (* valeurs statiques/constantes enregistrees dans la fermeture
+   * de la fonction: *)
   let il_est = "Il est" and pile = "pile"
   and midi = "midi" and minuit = "minuit"
   and heure = "heure" and space = " " and point = "."
   in
   fun f ->
+    (* debut du corps de quelle_heure_est_il *)
+    (* definitions locales: hInt, mInt, h, m *)
     let hInt = heures f
     and mInt = minutes f
     in
@@ -34,8 +55,9 @@ let quelle_heure_est_il =
       if mInt = 0 then pile else
       string_of_int mInt
     in
+    (* valeur final de retour: *)
     il_est ^ space ^ h ^ space ^ m ^ point
 ;;
 
-let test_quelle = [14.45; 12.0; 12.02; 0.34; 0.; 14.] ;;
-map quelle_heure_est_il test_quelle ;;
+let test2 = [14.45; 12.0; 12.02; 0.34; 0.; 14.] ;;
+let test2_quelleHeure = map quelle_heure_est_il test2 ;;
