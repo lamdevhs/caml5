@@ -1,0 +1,22 @@
+
+>       Caml Light version 0.75
+
+#partie A- : unit = ()
+#x : int = 3
+#y : int = 4
+#f : int -> int = <fun>
+#- : bool = false
+#- : int = 20
+#- : int = 17
+#partie B- : unit = ()
+#f : int -> int = <fun>
+#b : int = 3
+x : int = 2
+#- : int = 4
+#- : int = 6
+#partie C- : unit = ()
+#a : int = 2
+#- : int = 28
+#f : int -> int = <fun>
+#- : int = 6
+#
